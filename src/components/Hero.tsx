@@ -1,7 +1,6 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { LeadGenForm } from "@/components/LeadGenForm";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -45,7 +44,19 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="w-full flex justify-center lg:justify-end"
         >
-          <LeadGenForm />
+          {/* <LeadGenForm /> - Moved to dedicated page, can replace with image or Call to Action card */}
+          <div className="hidden lg:block relative w-full h-[500px]">
+             <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-teal-400 rounded-3xl opacity-10 blur-2xl transform rotate-3 scale-95" />
+             <div className="relative h-full bg-white/40 backdrop-blur-xl rounded-3xl border border-white/50 p-8 flex items-center justify-center text-center">
+                <div>
+                   <h3 className="text-2xl font-bold text-slate-800 mb-4">{t.nav.getQuote}</h3>
+                   <p className="text-slate-600 mb-8 max-w-xs mx-auto">Start your free quote in under 2 minutes. No spam, just options.</p>
+                   <a href="/quote" className="inline-block bg-blue-600 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                     Start Now
+                   </a>
+                </div>
+             </div>
+          </div>
         </motion.div>
       </div>
     </section>
