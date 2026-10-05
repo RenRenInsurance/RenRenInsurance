@@ -1,8 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Button } from "@/components/ui/button";
-import { Globe, Menu, ChevronDown } from "lucide-react";
+import { Globe, Menu, ChevronDown, ChevronRight, Phone, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -10,7 +9,8 @@ import React, { useState, useRef, useEffect } from "react";
 
 export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
-  const [isHomeOpen, setIsHomeOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleLanguage = () => {
@@ -21,7 +21,8 @@ export function Navbar() {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsHomeOpen(false);
+        setActiveDropdown(null);
+        setHoveredCategory(null);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -30,148 +31,206 @@ export function Navbar() {
     };
   }, []);
 
-  const navLinks = [
-    { label: t.nav.business, href: "/business" },
-    { label: t.nav.appointment, href: "/appointment" },
+  const handleDropdownClick = (menu: string) => {
+    if (activeDropdown === menu) {
+      setActiveDropdown(null);
+      setHoveredCategory(null);
+    } else {
+      setActiveDropdown(menu);
+      setHoveredCategory('personal'); // Default to first category
+    }
+  };
+
+  const categories = [
+    { key: 'personal', label: t.nav.menu.personalInsurance },
+    { key: 'commercial', label: t.nav.menu.commercialInsurance },
+    { key: 'asset', label: t.nav.menu.lifeRetirement },
+    { key: 'immigration', label: t.nav.menu.immigrationServices },
+    { key: 'other', label: t.nav.menu.otherServices },
   ];
 
+  const getCategoryItems = (key: string) => {
+    if (key === 'personal') return t.nav.menu.personalItems || [];
+    if (key === 'commercial') return t.nav.menu.commercialItems || [];
+    if (key === 'asset') return t.nav.menu.assetItems || [];
+    if (key === 'immigration') return t.nav.menu.immigrationItems || [];
+    if (key === 'other') return t.nav.menu.otherServicesItems || [];
+    return [];
+  };
+
+  const navLinkClass =
+    "relative text-neutral-600 hover:text-neutral-950 font-medium transition-colors text-sm xl:text-[15px] px-3 py-2 after:absolute after:left-3 after:right-3 after:bottom-0 after:h-px after:bg-neutral-950 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200";
+
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
+    <motion.nav
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50"
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="fixed top-0 left-0 right-0 z-50 bg-stone-50/95 backdrop-blur-sm border-b border-neutral-900"
     >
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div className="w-full h-20 flex items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 z-50">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">R</span>
+        <Link href="/" className="flex items-center gap-3 z-50">
+          <div className="w-10 h-10 bg-neutral-950 rounded-md flex items-center justify-center flex-shrink-0">
+            <span className="text-white font-display font-bold text-xl">R</span>
           </div>
-          <span className="text-xl font-bold text-slate-900 tracking-tight">RenRen Insurance</span>
+          <div className="flex flex-col leading-tight">
+            <span className="text-lg font-display font-bold text-neutral-950 tracking-tight">人人保险</span>
+            <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-500">RenRen Insurance</span>
+          </div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-6 relative" ref={dropdownRef}>
-           {/* Home Dropdown Trigger */}
-           <div>
-             <button 
-               onClick={() => setIsHomeOpen(!isHomeOpen)}
+        <div className="hidden lg:flex items-center gap-1 xl:gap-2 relative" ref={dropdownRef}>
+
+           {/* Home */}
+           <Link href="/" className={navLinkClass}>
+              {t.nav.home}
+           </Link>
+
+           {/* Combined Services Dropdown */}
+           <div className="relative">
+             <button
+               onClick={() => handleDropdownClick('services')}
                className={cn(
-                 "flex items-center gap-1 font-medium transition-all duration-200 px-4 py-2 rounded-md outline-none",
-                 isHomeOpen 
-                   ? "bg-blue-600 text-white shadow-md" 
-                   : "text-slate-600 hover:text-blue-600 hover:bg-slate-50"
+                 "flex items-center gap-1 font-medium transition-all duration-200 px-3 py-2 rounded-md outline-none text-sm xl:text-[15px]",
+                 activeDropdown === 'services'
+                   ? "bg-neutral-950 text-white"
+                   : "text-neutral-600 hover:text-neutral-950"
                )}
              >
-               {t.nav.home}
-               <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", isHomeOpen && "rotate-180")} />
+               {t.nav.services}
+               <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", activeDropdown === 'services' && "rotate-180")} />
              </button>
 
-             {/* Dropdown Content */}
              <AnimatePresence>
-               {isHomeOpen && (
+               {activeDropdown === 'services' && (
                  <motion.div
-                   initial={{ opacity: 0, y: 10 }}
+                   initial={{ opacity: 0, y: 8 }}
                    animate={{ opacity: 1, y: 0 }}
-                   exit={{ opacity: 0, y: 10 }}
-                   transition={{ duration: 0.2 }}
-                   className="absolute top-full left-0 mt-4 w-[600px] bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden"
+                   exit={{ opacity: 0, y: 8 }}
+                   transition={{ duration: 0.15 }}
+                   className="absolute top-full left-0 mt-3 w-[800px] bg-white rounded-lg shadow-xl border border-neutral-900 overflow-hidden z-50 max-h-[80vh] flex flex-col"
                  >
-                    <div className="p-6 grid grid-cols-2 gap-8">
-                       {/* Column 1: Personal & Family */}
-                       <div>
-                          <h4 className="font-bold text-slate-900 mb-4 text-lg border-b border-slate-100 pb-2">
-                             {t.nav.menu.personalFamily}
-                          </h4>
-                          <ul className="space-y-3">
-                             {[
-                               { href: "/personal/health", label: t.nav.menu.individualHealth },
-                               { href: "/personal/medicare", label: t.nav.menu.medicare },
-                               { href: "/personal/dental-vision", label: t.nav.menu.dentalVision },
-                               { href: "/personal/auto", label: t.nav.menu.auto },
-                               { href: "/personal/home", label: t.nav.menu.home },
-                               { href: "/personal/pet", label: t.nav.menu.pet },
-                               { href: "/personal/life", label: t.nav.menu.life },
-                               { href: "/personal/travel", label: t.nav.menu.travel },
-                               { href: "/personal/retirement", label: t.nav.menu.annuityRetirement },
-                             ].map((item) => (
-                               <li key={item.href}>
-                                 <Link 
-                                   href={item.href} 
-                                   className="block text-slate-600 hover:text-blue-600 hover:bg-slate-50 px-2 py-1 rounded transition-colors"
-                                   onClick={() => setIsHomeOpen(false)}
-                                 >
-                                   {item.label}
-                                 </Link>
-                               </li>
-                             ))}
-                          </ul>
+                    <div className="flex flex-1 overflow-hidden">
+                       {/* Left Column - Main Categories */}
+                       <div className="w-1/3 bg-stone-50 border-r border-neutral-200 overflow-y-auto">
+                          <div className="p-2">
+                             {categories.map((category) => {
+                                const items = getCategoryItems(category.key);
+                                const hasItems = items.length > 0;
+                                return (
+                                  <div
+                                     key={category.key}
+                                     onMouseEnter={() => hasItems && setHoveredCategory(category.key)}
+                                     className={cn(
+                                       "px-4 py-3 cursor-pointer transition-colors rounded-md",
+                                       hoveredCategory === category.key ? "bg-neutral-950" : "hover:bg-neutral-100",
+                                       !hasItems && "opacity-50"
+                                     )}
+                                  >
+                                     <div className="flex items-center justify-between">
+                                        <span className={cn(
+                                          "font-medium text-sm",
+                                          hoveredCategory === category.key ? "text-white" : "text-neutral-700"
+                                        )}>
+                                          {category.label}
+                                        </span>
+                                        {hasItems && (
+                                          <ChevronRight className={cn("w-4 h-4", hoveredCategory === category.key ? "text-white" : "text-neutral-400")} />
+                                        )}
+                                     </div>
+                                  </div>
+                                );
+                             })}
+                          </div>
                        </div>
 
-                       {/* Column 2: Enterprise & Group */}
-                       <div>
-                          <h4 className="font-bold text-slate-900 mb-4 text-lg border-b border-slate-100 pb-2">
-                             {t.nav.menu.enterpriseGroup}
-                          </h4>
-                           <ul className="space-y-3">
-                             {[
-                               { href: "/business/benefits", label: t.nav.menu.employeeBenefits },
-                               { href: "/business/commercial", label: t.nav.menu.commercial },
-                             ].map((item) => (
-                               <li key={item.href}>
-                                 <Link 
-                                   href={item.href} 
-                                   className="block text-slate-600 hover:text-blue-600 hover:bg-slate-50 px-2 py-1 rounded transition-colors"
-                                   onClick={() => setIsHomeOpen(false)}
-                                 >
-                                   {item.label}
-                                 </Link>
-                               </li>
-                             ))}
-                          </ul>
+                       {/* Right Column - Sub-items */}
+                       <div className="w-2/3 bg-white p-6 overflow-y-auto">
+                          <AnimatePresence mode="wait">
+                             {hoveredCategory && getCategoryItems(hoveredCategory).length > 0 && (
+                                <motion.div
+                                   key={hoveredCategory}
+                                   initial={{ opacity: 0, x: 8 }}
+                                   animate={{ opacity: 1, x: 0 }}
+                                   exit={{ opacity: 0, x: 8 }}
+                                   className="space-y-0"
+                                >
+                                   {getCategoryItems(hoveredCategory).map((item: { label: string; href: string }) => (
+                                      <Link
+                                         key={item.href}
+                                         href={item.href}
+                                         className="flex items-center justify-between px-4 py-2.5 text-neutral-600 hover:text-neutral-950 hover:bg-stone-50 rounded transition-colors border-b border-neutral-100 last:border-0 group"
+                                         onClick={() => { setActiveDropdown(null); setHoveredCategory(null); }}
+                                      >
+                                         {item.label}
+                                         <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                      </Link>
+                                   ))}
+                                </motion.div>
+                             )}
+
+                             {!hoveredCategory && (
+                                <motion.div
+                                   key="default"
+                                   initial={{ opacity: 0 }}
+                                   animate={{ opacity: 1 }}
+                                   exit={{ opacity: 0 }}
+                                   className="text-neutral-400 text-center py-8 font-mono text-sm uppercase tracking-wide"
+                                >
+                                   {language === 'zh' ? '請選擇一個類別' : 'Select a category'}
+                                </motion.div>
+                             )}
+                          </AnimatePresence>
                        </div>
                     </div>
                  </motion.div>
                )}
              </AnimatePresence>
            </div>
-              
-           {/* Other Links */}
-           {navLinks.map((link) => (
-             <Link 
-               key={link.label}
-               href={link.href} 
-               className="text-slate-600 hover:text-blue-600 font-medium transition-colors"
-             >
-                {link.label}
-             </Link>
-           ))}
+
+           {/* About RenRen */}
+           <Link href="/about" className={navLinkClass}>
+              {t.nav.about}
+           </Link>
+
+           {/* Appointment */}
+           <Link href="/appointment" className={navLinkClass}>
+              {t.nav.appointment}
+           </Link>
         </div>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-4">
-          <Button 
-            variant="ghost" 
-            onClick={toggleLanguage}
-            className="flex items-center gap-2 text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+        <div className="flex items-center gap-3">
+          <a
+            href={`tel:${t.homeContact.hotlineNumber.replace(/-/g, "")}`}
+            className="hidden xl:flex items-center gap-2 text-neutral-600 hover:text-neutral-950 font-mono text-sm transition-colors"
           >
-            <Globe className="w-4 h-4" />
-            <span className="font-medium">{language === "en" ? "中文" : "English"}</span>
-          </Button>
-          
+            <Phone className="w-4 h-4" />
+            {t.homeContact.hotlineNumber}
+          </a>
+
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-1.5 text-neutral-700 hover:text-neutral-950 hover:border-neutral-950 border border-neutral-300 rounded-md px-3 py-1.5 text-sm transition-colors"
+          >
+            <Globe className="w-3.5 h-3.5" />
+            <span className="font-medium">{language === "en" ? "中文" : "EN"}</span>
+          </button>
+
           <Link href="/quote">
-            <Button 
-              className="hidden md:flex bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 shadow-lg shadow-blue-500/20"
-            >
+            <span className="hidden lg:inline-flex items-center gap-1.5 bg-neutral-950 hover:bg-neutral-800 text-white rounded-md px-5 py-2.5 text-sm font-semibold transition-colors group">
               {t.nav.getQuote}
-            </Button>
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
           </Link>
-          
+
           {/* Mobile Actions */}
-          <div className="flex md:hidden gap-2">
-             <Button size="icon" variant="ghost">
+          <div className="flex lg:hidden gap-2">
+             <button className="p-2 text-neutral-700">
                <Menu className="w-5 h-5" />
-             </Button>
+             </button>
           </div>
         </div>
       </div>

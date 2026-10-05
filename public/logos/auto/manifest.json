@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Mercury Insurance",
+    "file": "mercury.svg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mercury_Insurance_logo.svg"
+  },
+  {
+    "name": "Nationwide",
+    "file": "nationwide.svg",
+    "sourceUrl": "https://en.wikipedia.org/wiki/File:Nationwide_Mutual_Insurance_Company_logo.svg"
+  },
+  {
+    "name": "Infinity Insurance",
+    "file": "infinity.png",
+    "sourceUrl": "https://www.infinityauto.com/themes/custom/b5infinity/assets/IIA%20New.png"
+  },
+  {
+    "name": "Travelers",
+    "file": "travelers.svg",
+    "sourceUrl": "https://www.travelers.com/ClientResources/tds-icons/assets/icons/logos/svg/trv-logo-2color-small.svg"
+  },
+  {
+    "name": "First American",
+    "file": "first-american.png",
+    "sourceUrl": "https://www.firstam.com/assets/logos/hr/fa-america250-logo.png"
+  },
+  {
+    "name": "Progressive",
+    "file": "progressive.svg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Logo_of_the_Progressive_Corporation.svg"
+  },
+  {
+    "name": "MetLife",
+    "file": "metlife.svg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:MetLife_logo.svg"
+  },
+  {
+    "name": "Safeco Insurance",
+    "file": "safeco.svg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Safeco_logo.svg"
+  },
+  {
+    "name": "Pacific Specialty Insurance Company",
+    "file": "pacific-specialty.svg",
+    "sourceUrl": "https://www.pacificspecialty.com/wp-content/uploads/2024/06/Pacific-Speciality-Insurance-Logo-Horizontal.svg"
+  },
+  {
+    "name": "Kemper",
+    "file": "kemper.svg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Logo_of_the_Kemper_Corporation.svg"
+  },
+  {
+    "name": "Aegis Specialty Insurance Services",
+    "file": "aegis.png",
+    "sourceUrl": "https://aegiseasy.com/wp-content/uploads/2023/06/AEG_specialty-division-color-2-1-1030x340.png"
+  },
+  {
+    "name": "Foremost Insurance Group",
+    "file": "foremost.png",
+    "sourceUrl": "https://cdn.cookielaw.org/logos/6f9548c9-3a87-4370-a23c-df4855d9b84c/018ec890-31fb-781d-8b73-bf64f81ade79/229b4940-6cc1-45cb-ad06-4e88e6f2023c/logos_0002_Foremost.png (sourced from www.foremost.com cookie-consent asset CDN)"
+  },
+  {
+    "name": "National General Insurance",
+    "file": "national-general.png",
+    "sourceUrl": "https://identity.nationalgeneral.com/customer/images/NatGenAllstate_vertical.png"
+  },
+  {
+    "name": "Stillwater Insurance Group",
+    "file": "stillwater.png",
+    "sourceUrl": "https://stillwaterinsurance.com/assets/images/logo-header-50h.png"
+  },
+  {
+    "name": "iCat (a Victor company)",
+    "file": "icat.svg",
+    "sourceUrl": "https://www.icat.com/content/dam/victor/icat/imagery/logos/ICAT-logo-footer.svg"
+  }
+]

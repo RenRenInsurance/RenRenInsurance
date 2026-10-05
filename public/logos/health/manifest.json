@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Blue Shield of California",
+    "file": "blueshield-ca.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blue_Shield_of_California_logo.png"
+  },
+  {
+    "name": "Kaiser Permanente",
+    "file": "kaiser-permanente.svg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:KP_logo.svg"
+  },
+  {
+    "name": "Ambetter from Health Net",
+    "file": "health-net.png",
+    "sourceUrl": "https://www.ambetterhealth.com/content/dam/centene/healthnet/logos/ambetter-hn-logo-horiz-eng.png"
+  },
+  {
+    "name": "L.A. Care Health Plan",
+    "file": "la-care.svg",
+    "sourceUrl": "https://www.lacare.org/sites/default/files/img/LAC_HORZNTL_logo_4COLOR_1.svg"
+  },
+  {
+    "name": "Anthem Blue Cross",
+    "file": "anthem-bluecross.svg",
+    "sourceUrl": "https://www.anthembluecross.com/content/dam/digital/logos/abs/dual-brands/anthem-bcbs-bc-logo-2023.svg (cropped to the Anthem Blue Cross lockup, excluding the adjacent standalone Anthem mark present in the same source file)"
+  }
+]
