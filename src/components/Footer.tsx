@@ -24,7 +24,7 @@ export function Footer() {
             <div key={col.title}>
               <h4 className="font-mono text-white mb-4 text-xs uppercase tracking-wider">{col.title}</h4>
               <ul className="space-y-2.5">
-                {col.items.slice(0, 8).map((item: { label: string; href: string }) => (
+                {col.items.map((item: { label: string; href: string }) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}

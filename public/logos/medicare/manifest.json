@@ -1,0 +1,12 @@
+[
+  { "name": "Blue Cross Blue Shield", "file": "bcbs.svg" },
+  { "name": "Aetna", "file": "aetna.svg" },
+  { "name": "Cigna", "file": "cigna.svg" },
+  { "name": "Medicare", "file": "medicare-gov.svg" },
+  { "name": "UnitedHealthcare", "file": "united-healthcare.svg" },
+  { "name": "WellCare", "file": "wellcare.png" },
+  { "name": "Clever Care Health Plan", "file": "clever-care.svg" },
+  { "name": "SCAN Health Plan", "file": "scan.png" },
+  { "name": "Astiva Health", "file": "astiva.png" },
+  { "name": "Humana", "file": "humana.svg" }
+]

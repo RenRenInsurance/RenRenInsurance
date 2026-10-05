@@ -12,14 +12,14 @@ export default function LifeInsurancePage() {
   const { t } = useLanguage();
 
   const products = [
-    { title: t.life.instantTerm.title, subtitle: undefined, features: t.life.instantTerm.features, desc: undefined },
-    { title: t.life.termLifeNew.title, subtitle: t.life.termLifeNew.subtitle, features: t.life.termLifeNew.features, desc: undefined },
-    { title: t.life.returnPremium.title, subtitle: t.life.returnPremium.subtitle, features: t.life.returnPremium.features, desc: undefined },
-    { title: t.life.indexedLife.title, subtitle: t.life.indexedLife.subtitle, features: t.life.indexedLife.features, desc: undefined },
-    { title: t.life.universalLife.title, subtitle: t.life.universalLife.subtitle, features: t.life.universalLife.features, desc: undefined },
-    { title: t.life.wholeLife.title, subtitle: undefined, features: t.life.wholeLife.features, desc: undefined },
-    { title: t.life.longTermCare.title, subtitle: undefined, features: undefined, desc: t.life.longTermCare.desc },
-    { title: t.life.disability.title, subtitle: undefined, features: undefined, desc: t.life.disability.desc },
+    { id: "term", title: t.life.instantTerm.title, subtitle: undefined, features: t.life.instantTerm.features, desc: undefined },
+    { id: undefined, title: t.life.termLifeNew.title, subtitle: t.life.termLifeNew.subtitle, features: t.life.termLifeNew.features, desc: undefined },
+    { id: undefined, title: t.life.returnPremium.title, subtitle: t.life.returnPremium.subtitle, features: t.life.returnPremium.features, desc: undefined },
+    { id: "iul", title: t.life.indexedLife.title, subtitle: t.life.indexedLife.subtitle, features: t.life.indexedLife.features, desc: undefined },
+    { id: undefined, title: t.life.universalLife.title, subtitle: t.life.universalLife.subtitle, features: t.life.universalLife.features, desc: undefined },
+    { id: "whole", title: t.life.wholeLife.title, subtitle: undefined, features: t.life.wholeLife.features, desc: undefined },
+    { id: undefined, title: t.life.longTermCare.title, subtitle: undefined, features: undefined, desc: t.life.longTermCare.desc },
+    { id: undefined, title: t.life.disability.title, subtitle: undefined, features: undefined, desc: t.life.disability.desc },
   ];
 
   return (
@@ -48,7 +48,7 @@ export default function LifeInsurancePage() {
           {/* Products Grid */}
           <div className="grid md:grid-cols-2 gap-px bg-neutral-200 border border-neutral-200 mb-12">
             {products.map((product, i) => (
-              <div key={i} className="bg-white p-6">
+              <div key={i} id={product.id} className="bg-white p-6 scroll-mt-28">
                 <span className="font-mono text-xs text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="font-display font-bold text-neutral-950 mt-2 mb-3">{product.title}</h3>
                 {product.subtitle && (

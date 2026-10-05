@@ -11,11 +11,41 @@ export default function TravelInsurancePage() {
   const { t } = useLanguage();
 
   const products = [
-    { icon: Users, title: t.travel.seniorTravel.title, desc: t.travel.seniorTravel.desc, cta: t.travel.seniorTravel.cta },
-    { icon: Plane, title: t.travel.visitorUS.title, desc: t.travel.visitorUS.desc, cta: t.travel.visitorUS.cta },
-    { icon: GraduationCap, title: t.travel.studentUS.title, desc: t.travel.studentUS.desc, cta: t.travel.studentUS.cta },
-    { icon: Globe, title: t.travel.international.title, desc: t.travel.international.desc, cta: t.travel.international.cta },
-    { icon: Ship, title: t.travel.cruise.title, desc: t.travel.cruise.desc, cta: t.travel.cruise.cta },
+    {
+      icon: Users,
+      title: t.travel.seniorTravel.title,
+      desc: t.travel.seniorTravel.desc,
+      cta: t.travel.seniorTravel.cta,
+      href: "https://www.travelinsure.com/products/intermedical-insurance/?pcode=100900",
+    },
+    {
+      icon: Plane,
+      title: t.travel.visitorUS.title,
+      desc: t.travel.visitorUS.desc,
+      cta: t.travel.visitorUS.cta,
+      href: "https://www.travelinsure.com/products/visit-usa-healthcare/?pcode=100900",
+    },
+    {
+      icon: GraduationCap,
+      title: t.travel.studentUS.title,
+      desc: t.travel.studentUS.desc,
+      cta: t.travel.studentUS.cta,
+      href: "https://www.travelinsure.com/studyusa/?pcode=100900",
+    },
+    {
+      icon: Globe,
+      title: t.travel.international.title,
+      desc: t.travel.international.desc,
+      cta: t.travel.international.cta,
+      href: "https://www.travelinsure.com/products/worldmed-insurance/?pcode=100900",
+    },
+    {
+      icon: Ship,
+      title: t.travel.cruise.title,
+      desc: t.travel.cruise.desc,
+      cta: t.travel.cruise.cta,
+      href: "/quote",
+    },
   ];
 
   return (
@@ -58,13 +88,25 @@ export default function TravelInsurancePage() {
                       <p className="text-neutral-600 leading-relaxed text-sm">{product.desc}</p>
                     </div>
                   </div>
-                  <Link
-                    href="/quote"
-                    className="flex-shrink-0 inline-flex items-center gap-1.5 border border-neutral-900 hover:bg-neutral-100 text-neutral-950 rounded-md px-5 py-2.5 text-sm font-semibold transition-colors group"
-                  >
-                    {product.cta}
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                  </Link>
+                  {product.href.startsWith("http") ? (
+                    <a
+                      href={product.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-shrink-0 inline-flex items-center gap-1.5 border border-neutral-900 hover:bg-neutral-100 text-neutral-950 rounded-md px-5 py-2.5 text-sm font-semibold transition-colors group"
+                    >
+                      {product.cta}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={product.href}
+                      className="flex-shrink-0 inline-flex items-center gap-1.5 border border-neutral-900 hover:bg-neutral-100 text-neutral-950 rounded-md px-5 py-2.5 text-sm font-semibold transition-colors group"
+                    >
+                      {product.cta}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>

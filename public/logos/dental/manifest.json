@@ -2,5 +2,14 @@
   { "name": "Blue Shield of California", "file": "blueshield-ca.png" },
   { "name": "Anthem Blue Cross", "file": "anthem-bluecross.svg" },
   { "name": "Renaissance Dental", "file": "renaissance-dental.png" },
-  { "name": "Delta Dental", "file": "delta-dental.svg" }
+  {
+    "name": "Delta Dental",
+    "file": "delta-dental.svg",
+    "link": "https://www.deltadentalins.com/shopping/delta/get-a-quote?issuerCode=DELTA&brokerId=222317"
+  },
+  {
+    "name": "Ameritas",
+    "file": "ameritas.png",
+    "link": "https://myplan.ameritas.com/id/010W6119"
+  }
 ]

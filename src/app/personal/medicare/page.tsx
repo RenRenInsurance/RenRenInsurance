@@ -5,6 +5,8 @@ import { PageHeader } from "@/components/PageHeader";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { Heart, CheckCircle2, Building2, Pill, Phone, ArrowUpRight } from "lucide-react";
+import { CarrierLogos } from "@/components/CarrierLogos";
+import medicareLogos from "../../../../public/logos/medicare/manifest.json";
 
 export default function MedicarePage() {
   const { t } = useLanguage();
@@ -117,6 +119,16 @@ export default function MedicarePage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Popular Insurers */}
+          <div className="mb-12">
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-neutral-950 mb-6 text-center">
+              {t.medicare.popularInsurers}
+            </h2>
+            <div className="border border-neutral-200 rounded-lg p-8">
+              <CarrierLogos basePath="/logos/medicare/" logos={medicareLogos} />
+            </div>
           </div>
 
           {/* CTA */}

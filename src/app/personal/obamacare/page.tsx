@@ -35,14 +35,16 @@ export default function ObamacarePage() {
           />
 
           {/* Online Quote Button */}
-          <Link
-            href="/quote"
+          <a
+            href="https://enroll.ambetterhealth.com/marketplace/off_ex_screener?_agent_id=sufang-chen-gomoxa&is_agent=true"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white rounded-md px-6 py-3 text-sm font-semibold transition-colors group mb-12"
           >
             <ExternalLink className="w-4 h-4" />
             {t.obamacare.onlineQuote}
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+          </a>
 
           {/* Certified Agent Badge & Intro */}
           <div className="border border-neutral-200 rounded-lg p-8 mb-12">
@@ -136,12 +138,14 @@ export default function ObamacarePage() {
               <p className="text-lg leading-relaxed text-center md:text-left flex-1 text-neutral-200">
                 {t.obamacare.certifiedAgent}
               </p>
-              <Link
-                href="/quote"
+              <a
+                href="https://enroll.ambetterhealth.com/marketplace/off_ex_screener?_agent_id=sufang-chen-gomoxa&is_agent=true"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex-shrink-0 inline-flex items-center gap-2 bg-white hover:bg-neutral-200 text-neutral-950 rounded-md px-6 py-3 text-sm font-semibold transition-colors"
               >
                 {t.obamacare.onlineQuote}
-              </Link>
+              </a>
             </div>
           </div>
 

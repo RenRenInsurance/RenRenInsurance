@@ -50,9 +50,9 @@ export const translations = {
           { label: "Whole Life Insurance", href: "/personal/life#whole" },
         ],
         immigrationItems: [
-          { label: "Green Card", href: "/services/immigration#greencard" },
-          { label: "Work Permit (EAD)", href: "/services/immigration#workpermit" },
-          { label: "Naturalization", href: "/services/immigration#naturalization" },
+          { label: "Green Card", href: "/services/immigration" },
+          { label: "Work Permit (EAD)", href: "/services/immigration" },
+          { label: "Naturalization", href: "/services/immigration" },
         ],
         otherServicesItems: [
           { label: "Immigration (Green Card, Work Permit, Naturalization)", href: "/services/immigration" },
@@ -284,6 +284,7 @@ export const translations = {
         desc: "Part D, also known as the Prescription Drug Plan. Medicare Parts A and B do not include prescription drug benefits, so you need to separately apply for Medicare prescription drug coverage.",
       },
       contactUs: "Contact us for more information.",
+      popularInsurers: "Popular Medicare Carriers",
     },
     dentalVision: {
       pageTitle: "Dental & Vision Insurance",
@@ -943,9 +944,9 @@ export const translations = {
           { label: "終身壽險", href: "/personal/life#whole" },
         ],
         immigrationItems: [
-          { label: "綠卡", href: "/services/immigration#greencard" },
-          { label: "工卡 (EAD)", href: "/services/immigration#workpermit" },
-          { label: "入籍", href: "/services/immigration#naturalization" },
+          { label: "綠卡", href: "/services/immigration" },
+          { label: "工卡 (EAD)", href: "/services/immigration" },
+          { label: "入籍", href: "/services/immigration" },
         ],
         otherServicesItems: [
           { label: "移民服務（綠卡、工卡、入籍）", href: "/services/immigration" },
@@ -1177,6 +1178,7 @@ export const translations = {
         desc: "D 部份，又稱為處方藥計劃。聯邦醫療保險的A 部份和B 部份並不包括處方藥福利，您需要另外申請專門給付處方藥費用的聯邦醫療保險。",
       },
       contactUs: "聯繫我們以獲得更多資訊。",
+      popularInsurers: "熱門聯邦醫療保險公司",
     },
     dentalVision: {
       pageTitle: "牙科眼科保險",

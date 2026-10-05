@@ -1,72 +1,13 @@
 [
-  {
-    "name": "AIG (American International Group)",
-    "file": "aig.svg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:AIG_new_logo.svg"
-  },
-  {
-    "name": "Assurity Life Insurance Company",
-    "file": "assurity.png",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Assurity.png"
-  },
-  {
-    "name": "Allianz",
-    "file": "allianz.svg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Allianz.svg"
-  },
-  {
-    "name": "Nationwide",
-    "file": "nationwide.svg",
-    "sourceUrl": "https://en.wikipedia.org/wiki/File:Nationwide_Mutual_Insurance_Company_logo.svg"
-  },
-  {
-    "name": "North American Company for Life and Health Insurance",
-    "file": "north-american.png",
-    "sourceUrl": "https://www.northamericancompany.com (official site header logo)"
-  },
-  {
-    "name": "Lincoln Financial Group",
-    "file": "lincoln-financial.jpg",
-    "sourceUrl": "https://photos.prnewswire.com/prnfull/20050830/LFLOGO (official Lincoln Financial Group PR Newswire media asset)"
-  },
-  {
-    "name": "Foresters Financial",
-    "file": "foresters.svg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Foresters_Financial_Logo.svg"
-  },
-  {
-    "name": "Transamerica",
-    "file": "transamerica.svg",
-    "sourceUrl": "https://en.wikipedia.org/wiki/File:Transamerica2025Logo.svg"
-  },
-  {
-    "name": "Prudential Financial",
-    "file": "prudential.svg",
-    "sourceUrl": "https://en.wikipedia.org/wiki/File:Prudential_Financial.svg"
-  },
-  {
-    "name": "Global Atlantic Financial Group",
-    "file": "global-atlantic.svg",
-    "sourceUrl": "https://www.globalatlantic.com (official site header logo, AEM asset)"
-  },
-  {
-    "name": "John Hancock",
-    "file": "john-hancock.svg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Hancock_Insurance_Logo.svg"
-  },
-  {
-    "name": "MassMutual (Massachusetts Mutual Life Insurance Company)",
-    "file": "massmutual.svg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:MassMutual_logo.svg"
-  },
-  {
-    "name": "American Equity Investment Life Insurance Company",
-    "file": "american-equity.svg",
-    "sourceUrl": "https://www.american-equity.com (official site brand asset CDN)"
-  },
-  {
-    "name": "Athene",
-    "file": "athene.svg",
-    "sourceUrl": "https://www.athene.com/athene-cdn/dist/assets/logos/Athene-Logo-Black-Blue-With-Tag.svg (official site brand asset CDN)"
-  }
+  { "name": "AIG", "file": "aig.svg" },
+  { "name": "National Life Group", "file": "national-life-group.png" },
+  { "name": "Nationwide", "file": "nationwide.svg" },
+  { "name": "Athene", "file": "athene.svg" },
+  { "name": "American National", "file": "american-national.svg" },
+  { "name": "F&G Annuities & Life", "file": "fg-annuities-life.svg" },
+  { "name": "Allianz", "file": "allianz.svg" },
+  { "name": "Corebridge Financial", "file": "corebridge-financial.svg" },
+  { "name": "Assurity Life Insurance Company", "file": "assurity.png" },
+  { "name": "MassMutual", "file": "massmutual.svg" },
+  { "name": "American Partners Insurance Marketing", "file": "apim.png" }
 ]
