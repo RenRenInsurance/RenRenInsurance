@@ -17,8 +17,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RenRen Insurance",
-  description: "Insurance Made Simple / 保险从未如此简单",
+  title: "人人保險 RenRen Insurance",
+  description: "從個人、家庭到企業，一站式保險保障 — RenRen Insurance",
 };
 
 export default function RootLayout({
@@ -30,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased bg-stone-50`}
+        suppressHydrationWarning
       >
         <LanguageProvider>
           {children}

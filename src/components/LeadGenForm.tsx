@@ -21,6 +21,8 @@ export function LeadGenForm() {
     phone: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const handleNext = () => {
     if (step === 1 && !selectedType) return;
@@ -38,11 +40,22 @@ export function LeadGenForm() {
     if (step > 1) setStep(step - 1);
   };
 
-  const handleSubmit = () => {
-    // Simulate submission
-    setTimeout(() => {
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    setSubmitError(false);
+    try {
+      const res = await fetch("/api/quote-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ insuranceType: selectedType, ...formData }),
+      });
+      if (!res.ok) throw new Error("Request failed");
       setIsSubmitted(true);
-    }, 500);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const updateFormData = (field: string, value: string) => {
@@ -207,6 +220,10 @@ export function LeadGenForm() {
           )}
         </AnimatePresence>
 
+        {submitError && (
+          <p className="text-sm text-red-600 mt-4 text-center">{t.leadGen.errorMessage}</p>
+        )}
+
         <div className="flex justify-between mt-8">
           <button
             onClick={handleBack}
@@ -221,9 +238,10 @@ export function LeadGenForm() {
           </button>
           <button
             onClick={handleNext}
-            className="inline-flex items-center bg-neutral-950 hover:bg-neutral-800 text-white rounded-md px-7 py-3 text-sm font-semibold transition-colors"
+            disabled={isSubmitting}
+            className="inline-flex items-center bg-neutral-950 hover:bg-neutral-800 disabled:opacity-50 text-white rounded-md px-7 py-3 text-sm font-semibold transition-colors"
           >
-            {step === 3 ? t.leadGen.buttons.submit : t.leadGen.buttons.next}
+            {step === 3 ? (isSubmitting ? t.leadGen.buttons.sending : t.leadGen.buttons.submit) : t.leadGen.buttons.next}
             {step !== 3 && <ArrowRight className="w-4 h-4 ml-2" />}
           </button>
         </div>

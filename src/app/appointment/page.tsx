@@ -4,13 +4,34 @@ import { Navbar } from "@/components/Navbar";
 import { PageHeader } from "@/components/PageHeader";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Calendar, Clock, MapPin, ArrowUpRight } from "lucide-react";
+import { Calendar, Clock, MapPin, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
 
 export default function AppointmentPage() {
   const { t } = useLanguage();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [service, setService] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/appointment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, service }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <main className="min-h-screen bg-stone-50">
@@ -72,37 +93,68 @@ export default function AppointmentPage() {
                 {t.appointment.requestAppointment}
               </h2>
               <p className="text-neutral-500 text-sm mb-6">{t.appointment.confirmMessage}</p>
-              <form className="space-y-5">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-neutral-700">{t.appointment.fullName}</Label>
-                  <Input id="name" placeholder={t.leadGen.inputs.name} className="rounded-md border-neutral-300" />
+              {status === "sent" ? (
+                <div className="flex flex-col items-center text-center py-10">
+                  <CheckCircle2 className="w-10 h-10 text-neutral-950 mb-4" />
+                  <p className="font-display font-bold text-neutral-950 mb-1">
+                    {t.appointment.successTitle}
+                  </p>
+                  <p className="text-neutral-500 text-sm">{t.appointment.confirmMessage}</p>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-neutral-700">{t.appointment.email}</Label>
-                  <Input id="email" type="email" placeholder={t.leadGen.inputs.email} className="rounded-md border-neutral-300" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="service" className="text-neutral-700">{t.appointment.serviceNeeded}</Label>
-                  <Select>
-                    <SelectTrigger className="rounded-md border-neutral-300 w-full">
-                      <SelectValue placeholder={t.appointment.selectService} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="health">{t.appointment.services.health}</SelectItem>
-                      <SelectItem value="auto">{t.appointment.services.auto}</SelectItem>
-                      <SelectItem value="business">{t.appointment.services.business}</SelectItem>
-                      <SelectItem value="other">{t.appointment.services.other}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white rounded-md px-6 py-3 text-sm font-semibold transition-colors group"
-                >
-                  {t.appointment.scheduleNow}
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </button>
-              </form>
+              ) : (
+                <form className="space-y-5" onSubmit={handleSubmit}>
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-neutral-700">{t.appointment.fullName}</Label>
+                    <Input
+                      id="name"
+                      placeholder={t.leadGen.inputs.name}
+                      className="rounded-md border-neutral-300"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-neutral-700">{t.appointment.email}</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder={t.leadGen.inputs.email}
+                      className="rounded-md border-neutral-300"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="service" className="text-neutral-700">{t.appointment.serviceNeeded}</Label>
+                    <Select value={service} onValueChange={setService}>
+                      <SelectTrigger className="rounded-md border-neutral-300 w-full">
+                        <SelectValue placeholder={t.appointment.selectService} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="health">{t.appointment.services.health}</SelectItem>
+                        <SelectItem value="auto">{t.appointment.services.auto}</SelectItem>
+                        <SelectItem value="business">{t.appointment.services.business}</SelectItem>
+                        <SelectItem value="other">{t.appointment.services.other}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  {status === "error" && (
+                    <p className="text-sm text-red-600">{t.appointment.errorMessage}</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-neutral-950 hover:bg-neutral-800 disabled:opacity-50 text-white rounded-md px-6 py-3 text-sm font-semibold transition-colors group"
+                  >
+                    {status === "submitting" ? t.appointment.sending : t.appointment.scheduleNow}
+                    {status !== "submitting" && (
+                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </motion.div>

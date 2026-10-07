@@ -96,8 +96,10 @@ export const translations = {
         next: "Next",
         back: "Back",
         submit: "Get My Quote",
+        sending: "Sending…",
       },
       success: "Thanks! We'll be in touch shortly.",
+      errorMessage: "Something went wrong. Please call us instead.",
     },
     services: {
       learnMore: "Learn more",
@@ -152,6 +154,9 @@ export const translations = {
         other: "Other Inquiry",
       },
       scheduleNow: "Schedule Now",
+      sending: "Sending…",
+      successTitle: "Request Sent!",
+      errorMessage: "Something went wrong. Please call us instead.",
     },
     business: {
       smallBusiness: "Small Business",
@@ -990,8 +995,10 @@ export const translations = {
         next: "下一步",
         back: "上一步",
         submit: "取得免費報價",
+        sending: "傳送中…",
       },
       success: "收到！我們會盡快與您聯繫。",
+      errorMessage: "發生錯誤，請直接致電我們。",
     },
     services: {
       learnMore: "了解更多",
@@ -1046,6 +1053,9 @@ export const translations = {
         other: "其他諮詢",
       },
       scheduleNow: "立即預約",
+      sending: "傳送中…",
+      successTitle: "已送出預約請求！",
+      errorMessage: "發生錯誤，請直接致電我們。",
     },
     business: {
       smallBusiness: "小型企業",
