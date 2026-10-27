@@ -14,6 +14,7 @@ export default function AppointmentPage() {
   const { t } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [wechatId, setWechatId] = useState("");
   const [service, setService] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
 
@@ -24,7 +25,7 @@ export default function AppointmentPage() {
       const res = await fetch("/api/appointment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, service }),
+        body: JSON.stringify({ name, email, wechatId, service }),
       });
       if (!res.ok) throw new Error("Request failed");
       setStatus("sent");
@@ -124,6 +125,18 @@ export default function AppointmentPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="wechat" className="text-neutral-700">
+                      {t.appointment.wechatId} <span className="text-neutral-400 font-normal">({t.appointment.optional})</span>
+                    </Label>
+                    <Input
+                      id="wechat"
+                      placeholder={t.appointment.wechatPlaceholder}
+                      className="rounded-md border-neutral-300"
+                      value={wechatId}
+                      onChange={(e) => setWechatId(e.target.value)}
                     />
                   </div>
                   <div className="space-y-2">

@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import crypto from "crypto";
+import { uploadsDirPath } from "@/lib/storage";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 const ALLOWED_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
 const MAX_BYTES = 5 * 1024 * 1024; // 5MB
 
@@ -35,9 +35,10 @@ export async function POST(req: NextRequest) {
   let ext = path.extname(file.name).toLowerCase();
   if (!ALLOWED_EXTENSIONS.has(ext)) ext = ".jpg";
 
-  await fs.mkdir(UPLOAD_DIR, { recursive: true });
+  const uploadDir = uploadsDirPath();
+  await fs.mkdir(uploadDir, { recursive: true });
   const filename = `${Date.now()}-${crypto.randomUUID().slice(0, 8)}${ext}`;
-  await fs.writeFile(path.join(UPLOAD_DIR, filename), buffer);
+  await fs.writeFile(path.join(uploadDir, filename), buffer);
 
-  return NextResponse.json({ url: `/uploads/${filename}` });
+  return NextResponse.json({ url: `/api/uploads/${filename}` });
 }

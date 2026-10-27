@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import crypto from "crypto";
-
-const DATA_PATH = path.join(process.cwd(), "data", "news.json");
+import { newsFilePath } from "@/lib/storage";
 
 interface NewsItem {
   id: string;
@@ -16,12 +15,19 @@ interface NewsItem {
 }
 
 async function readNews(): Promise<NewsItem[]> {
-  const raw = await fs.readFile(DATA_PATH, "utf-8");
-  return JSON.parse(raw);
+  try {
+    const raw = await fs.readFile(newsFilePath(), "utf-8");
+    return JSON.parse(raw);
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code === "ENOENT") return [];
+    throw err;
+  }
 }
 
 async function writeNews(items: NewsItem[]) {
-  await fs.writeFile(DATA_PATH, JSON.stringify(items, null, 2) + "\n", "utf-8");
+  const filePath = newsFilePath();
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, JSON.stringify(items, null, 2) + "\n", "utf-8");
 }
 
 function checkPassword(password: unknown): boolean {

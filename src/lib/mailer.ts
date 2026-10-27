@@ -1,28 +1,30 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-let transporter: ReturnType<typeof nodemailer.createTransport> | null = null;
+let resend: Resend | null = null;
 
-function getTransporter() {
-  if (!transporter) {
-    const user = process.env.GMAIL_USER;
-    const pass = process.env.GMAIL_APP_PASSWORD;
-    if (!user || !pass) {
-      throw new Error("GMAIL_USER / GMAIL_APP_PASSWORD are not set");
+function getClient() {
+  if (!resend) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      throw new Error("RESEND_API_KEY is not set");
     }
-    transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: { user, pass },
-    });
+    resend = new Resend(apiKey);
   }
-  return transporter;
+  return resend;
 }
 
 export async function sendNotificationEmail(subject: string, html: string) {
-  const to = process.env.NOTIFY_EMAIL || process.env.GMAIL_USER;
-  await getTransporter().sendMail({
-    from: `RenRen Insurance Website <${process.env.GMAIL_USER}>`,
+  const to = process.env.NOTIFY_EMAIL;
+  if (!to) {
+    throw new Error("NOTIFY_EMAIL is not set");
+  }
+  const { error } = await getClient().emails.send({
+    from: process.env.RESEND_FROM || "RenRen Insurance Website <onboarding@resend.dev>",
     to,
     subject,
     html,
   });
+  if (error) {
+    throw new Error(error.message);
+  }
 }

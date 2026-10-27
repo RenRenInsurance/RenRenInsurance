@@ -91,6 +91,7 @@ export const translations = {
         name: "Full Name",
         email: "Email Address",
         phone: "Phone Number",
+        wechatId: "WeChat ID",
       },
       buttons: {
         next: "Next",
@@ -147,6 +148,9 @@ export const translations = {
       email: "Email",
       serviceNeeded: "Service Needed",
       selectService: "Select a service",
+      wechatId: "WeChat ID",
+      wechatPlaceholder: "Your WeChat ID",
+      optional: "optional",
       services: {
         health: "Health Insurance",
         auto: "Auto & Home",
@@ -990,6 +994,7 @@ export const translations = {
         name: "姓名",
         email: "電子郵件",
         phone: "聯絡電話",
+        wechatId: "微信號",
       },
       buttons: {
         next: "下一步",
@@ -1046,6 +1051,9 @@ export const translations = {
       email: "電子郵件",
       serviceNeeded: "所需服務",
       selectService: "選擇服務",
+      wechatId: "微信號",
+      wechatPlaceholder: "您的微信號",
+      optional: "選填",
       services: {
         health: "健康保險",
         auto: "汽車與房屋保險",

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# uploaded photos (saved locally or to a persistent disk in production,
+# not meant to be committed to git)
+/data/uploads/

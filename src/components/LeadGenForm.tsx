@@ -19,6 +19,7 @@ export function LeadGenForm() {
     name: "",
     email: "",
     phone: "",
+    wechatId: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -213,6 +214,18 @@ export function LeadGenForm() {
                     onChange={(e) => updateFormData("phone", e.target.value)}
                     className="rounded-md border-neutral-300 text-lg h-12"
                     placeholder="(555) 123-4567"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="wechatId" className="text-neutral-700">
+                    {t.leadGen.inputs.wechatId} <span className="text-neutral-400 font-normal">({t.appointment.optional})</span>
+                  </Label>
+                  <Input
+                    id="wechatId"
+                    value={formData.wechatId}
+                    onChange={(e) => updateFormData("wechatId", e.target.value)}
+                    className="rounded-md border-neutral-300 text-lg h-12"
+                    placeholder={t.appointment.wechatPlaceholder}
                   />
                 </div>
               </div>

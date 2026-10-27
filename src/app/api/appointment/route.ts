@@ -7,7 +7,7 @@ function escapeHtml(value: string) {
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { name, email, service } = body;
+  const { name, email, wechatId, service } = body;
 
   if (!name || !email) {
     return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
     <h2>New Appointment Request</h2>
     <p><strong>Name:</strong> ${escapeHtml(name)}</p>
     <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+    ${wechatId ? `<p><strong>WeChat ID:</strong> ${escapeHtml(wechatId)}</p>` : ""}
     <p><strong>Service Needed:</strong> ${escapeHtml(service || "Not specified")}</p>
     <p><em>Submitted from the RenRen Insurance website appointment form.</em></p>
   `;
