@@ -36,8 +36,8 @@ export default function AboutPage() {
   });
 
   const stats = [
-    { value: "20,000+", label: language === "zh" ? "服務家庭" : "Families Served" },
-    { value: "15+", label: language === "zh" ? "年經驗" : "Years of Service" },
+    { value: "1,000+", label: language === "zh" ? "服務家庭" : "Families Served" },
+    { value: "5+", label: language === "zh" ? "年經驗" : "Years of Service" },
     { value: "50+", label: language === "zh" ? "合作保險公司" : "Carrier Partners" },
     { value: "7", label: language === "zh" ? "天服務" : "Days a Week" },
   ];

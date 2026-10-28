@@ -233,7 +233,7 @@ export const translations = {
     obamacare: {
       pageTitle: "Health Insurance (Obamacare)",
       onlineQuote: "Online Quote",
-      intro: "Starting January 1, 2014, the U.S. government began implementing the Affordable Care Act. The health insurance law requires all individuals from 0 to 64 years old to purchase health insurance. Those without health insurance may face penalties. Due to the numerous and complex health insurance plans available, many people find it confusing. Our center has helped over 20,000 families apply and has sufficient experience to help you choose health insurance that meets your needs.",
+      intro: "Starting January 1, 2014, the U.S. government began implementing the Affordable Care Act. The health insurance law requires all individuals from 0 to 64 years old to purchase health insurance. Those without health insurance may face penalties. Due to the numerous and complex health insurance plans available, many people find it confusing. Our center has helped over 1,000 families apply and has sufficient experience to help you choose health insurance that meets your needs.",
       importantDates: {
         title: "Important Dates",
         item1: "Want to renew your health insurance plan? Starting October 1, 2024!",
@@ -1136,7 +1136,7 @@ export const translations = {
     obamacare: {
       pageTitle: "健康保險 (奧巴馬全民健保)",
       onlineQuote: "網上估價",
-      intro: "從2014年1月1號起，美國政府開始推行全民健保計劃。健保法規定所有從0到64歲的人都必須要購買健康保險，沒有購買健康保險的人都可能會被罰款。由於現在的健康保險計劃繁多及內容複雜，而導致很多人都覺得很混亂。本中心已經幫助超過兩萬個家庭申請，有足夠的經驗幫助您選擇符合您需求的健康保險。",
+      intro: "從2014年1月1號起，美國政府開始推行全民健保計劃。健保法規定所有從0到64歲的人都必須要購買健康保險，沒有購買健康保險的人都可能會被罰款。由於現在的健康保險計劃繁多及內容複雜，而導致很多人都覺得很混亂。本中心已經幫助超過1,000個家庭申請，有足夠的經驗幫助您選擇符合您需求的健康保險。",
       importantDates: {
         title: "重要日期",
         item1: "想要更新您的全民健保計劃？從 2024年10月1號就開始囖！",
